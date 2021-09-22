@@ -31,16 +31,18 @@ class _AuthPageState extends State<AuthPage> {
           formData.name,
           formData.email,
           formData.password,
-          formData.image ,
+          formData.image,
         );
       }
       //IMPLEMENTAR
     } catch (error) {
       //tratar erro
     } finally {
-      setState(
-        () => _isLoading = false,
-      );
+      if (mounted) {
+        setState(
+          () => _isLoading = false,
+        );
+      }
     }
   }
 
