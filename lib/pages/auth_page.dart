@@ -1,6 +1,5 @@
 import 'package:chat_firebase/components/auth_form.dart';
 import 'package:chat_firebase/core/models/auth_form_data.dart';
-import 'package:chat_firebase/core/services/auth/auth_mock_service.dart';
 import 'package:chat_firebase/core/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 
@@ -20,13 +19,11 @@ class _AuthPageState extends State<AuthPage> {
         () => _isLoading = true,
       );
       if (formData.isLogin) {
-        //Login
         await AuthService().login(
           formData.email,
           formData.password,
         );
       } else {
-        //Signup
         await AuthService().signup(
           formData.name,
           formData.email,
@@ -34,7 +31,6 @@ class _AuthPageState extends State<AuthPage> {
           formData.image,
         );
       }
-      //IMPLEMENTAR
     } catch (error) {
       //tratar erro
     } finally {
@@ -44,12 +40,6 @@ class _AuthPageState extends State<AuthPage> {
         );
       }
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    AuthMockService.listUsers();
   }
 
   @override
