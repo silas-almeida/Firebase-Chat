@@ -18,7 +18,12 @@ class AuthFirebaseService implements AuthService {
   ChatUser? get currentUser => _currentUser;
 
   @override
-  Future<void> login(String email, String password) async {}
+  Future<void> login(String email, String password) async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+  }
 
   @override
   Future<void> signup(
