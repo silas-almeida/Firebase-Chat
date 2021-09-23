@@ -9,6 +9,6 @@ abstract class ChatService {
   Future<ChatMessage?> save(String text, ChatUser user);
 
   factory ChatService() {
-    return ChatFirebaseChat();
+    return ChatFirebaseService();
   }
 }

@@ -4,10 +4,21 @@ import 'package:chat_firebase/core/models/chat_message.dart';
 import 'package:chat_firebase/core/services/chat/chat_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class ChatFirebaseChat implements ChatService {
+class ChatFirebaseService implements ChatService {
   @override
-  Stream<List<ChatMessage>> messagesStream() =>
-      const Stream<List<ChatMessage>>.empty();
+  Stream<List<ChatMessage>> messagesStream() {
+    final store = FirebaseFirestore.instance;
+
+    final snapshots = store
+        .collection('chat')
+        .withConverter(
+          fromFirestore: _fromFirestore,
+          toFirestore: _toFirestore,
+        )
+        .snapshots();
+
+    return snapshots.map((snaphsot) => snaphsot.docs.map((doc) => doc.data()).toList());
+  }
 
   @override
   Future<ChatMessage?> save(String text, ChatUser user) async {
