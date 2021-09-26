@@ -7,7 +7,7 @@ A Chat App integrated with Firebase services.
 - Firebase Storage, Firestore, Firebase Messaging
 - Dart, Flutter
 
-# State Manager 
+# State Management
 
 - Streams, Setstate (native resources in Flutter)
 
